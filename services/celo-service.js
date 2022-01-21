@@ -73,9 +73,12 @@ const getTransactionInfo = async (queryParam, contractTransactions) => {
         method: 'get',
         url: coinApiUrl
     };
+    let coinDetailsValue;
     let [coinDetails, coinDetailsErr] = await promiseUtil.handle(axios(config));
     if (coinDetailsErr || coinDetails.data === undefined || coinDetails.data === null) {
-        coinDetails.data = [] //If could not fetch information from coingecko api default value needs to be used
+        coinDetailsValue = [] //If could not fetch information from coingecko api default value needs to be used
+    } else{
+        coinDetailsValue = coinDetails.data;
     }
 
     //Get Coin Exchange rate coin exchange open api
@@ -130,7 +133,7 @@ const getTransactionInfo = async (queryParam, contractTransactions) => {
                                 let currencyId = 'celo';
 
                                 //Get Market value of the token
-                                let requiredCoinDetail = coinDetails.data.find(val => val.name === contractTransactions[value].tokenName)
+                                let requiredCoinDetail = coinDetailsValue.find(val => val.name === contractTransactions[value].tokenName)
                                
                                 if (requiredCoinDetail !== undefined && requiredCoinDetail !== null) {
                                     currencyId = requiredCoinDetail.id;
@@ -175,7 +178,7 @@ const getTransactionInfo = async (queryParam, contractTransactions) => {
                                 let currencyId = 'celo';
 
                                 //Get Market value of the token
-                                let requiredCoinDetail = coinDetails.data.find(val => val.name === contractTransactions[value].tokenName)
+                                let requiredCoinDetail = coinDetailsValue.find(val => val.name === contractTransactions[value].tokenName)
                                 if (requiredCoinDetail !== undefined && requiredCoinDetail !== null) {
                                     currencyId = requiredCoinDetail.id;
                                 }
@@ -218,7 +221,7 @@ const getTransactionInfo = async (queryParam, contractTransactions) => {
                                 let currencyId = 'celo';
 
                                 //Get Market value of the token
-                                let requiredCoinDetail = coinDetails.data.find(val => val.name === contractTransactions[value].tokenName)
+                                let requiredCoinDetail = coinDetailsValue.find(val => val.name === contractTransactions[value].tokenName)
                                 
                                 if (requiredCoinDetail !== undefined && requiredCoinDetail !== null) {
                                     currencyId = requiredCoinDetail.id;
