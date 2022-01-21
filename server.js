@@ -12,7 +12,7 @@
 
  // Routes
 
- const testRoutes = require('./routes/test.routes');
+ const tokenRoutes = require('./routes/token.routes');
  
  
  /**
@@ -46,7 +46,7 @@
  app.use(LogService.expressLogger());
  
  // Routes registration
- app.use('/test', testRoutes);
+ app.use('/api', tokenRoutes);
  
 
 
