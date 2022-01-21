@@ -15,9 +15,7 @@ Desktop.ini
 #copy server.js to this file for testing purposes
 test.js
 
-# env
-*.env
-.env 
+# env 
 .env.production 
 
 migration
@@ -125,7 +123,6 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.test
 .env*.local
 
